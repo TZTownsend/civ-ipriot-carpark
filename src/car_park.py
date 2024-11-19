@@ -48,4 +48,9 @@ class CarPark:
             self.plates.pop()
         self.update_displays()
 
+    @property
+    def available_bays(self):
+        return max(0, self.capacity - len(self.plates))
+
+
 
