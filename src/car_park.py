@@ -22,6 +22,20 @@ class CarPark:
         elif isinstance(component, Display):
             self.displays.append(component)
 
+    def deregister(self, component):
+        if not isinstance(component, (Sensor, Display)):
+            raise TypeError("Object must be a Sensor or Display")
+        if isinstance(component, Sensor):
+            try:
+                self.sensors.remove(component)
+            except:
+                raise ValueError("Sensor not found")
+        elif isinstance(component, Display):
+            try:
+                self.displays.remove(component)
+            except:
+                raise ValueError("Display not found")
+
     def add_car(self, plate):
         self.plates.append(plate)
         self.update_displays()
@@ -33,4 +47,5 @@ class CarPark:
             # code to deal with undetected plates
             self.plates.pop()
         self.update_displays()
+
 
