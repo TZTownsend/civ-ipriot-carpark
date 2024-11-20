@@ -371,11 +371,14 @@ You may want to see the number of available bays, the current temperature, and t
 
 Now consider, between the `CarPark`, `Sensor`, and `Display` classes, which class is responsible for each piece of information? There's no right or wrong answer here. But you should be able to justify your answer.
 
->Q. Which class is responsible for the number of available bays (and why)?
+>Q. Which class is responsible for the number of available bays (and why)? <br>
+>A. I think the CarPark class should be responsible as the available bays may be altered due to the capacity of the car park changing (eg car bays being unavailable due to maintenance works).
 >
->Q. Which class is responsible for the current temperature (and why)?
->
->Q. Which class is responsible for the time (and why)?
+>Q. Which class is responsible for the current temperature (and why)? <br>
+>A. I think the CarPark should be responsible for the current temperature at it should be linked to the location which is a CarPark attribute.
+> 
+>Q. Which class is responsible for the time (and why)? <br>
+>A. I think the CarPark should be responsible for the time as it should also be linked to the location to take into account local time differences eg daylight savings. 
 >
 --------
 
@@ -447,9 +450,9 @@ This time, we will push the tag to the remote repository:
 
 Add a screenshot of the GitHub repository after pushing the tag, showing the CarPark class with the new methods:
 
-```markdown
-![Added methods to the car park class](images/methods-to-car-park.png)
-```
+
+![Added methods to the car park class](images/add_methods_to_car_park.png)
+
 
 Answer the following questions:
 > **Review Questions**
