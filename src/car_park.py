@@ -3,10 +3,11 @@ from display import Display
 
 
 class CarPark:
-    def __init__(self, location='Unknown', capacity=0, plates=None,
+    def __init__(self, location='Unknown', capacity=0, temperature = temperature, plates=None,
                  sensors=None, displays=None):
         self.location = location
         self.capacity = capacity
+        self.temperature = temperature
         self.plates = plates or []
         self.sensors = sensors or []
         self.displays = displays or []
@@ -52,5 +53,7 @@ class CarPark:
     def available_bays(self):
         return max(0, self.capacity - len(self.plates))
 
+    def update_temperature(self, temperature):
+        self.temperature = temperature
 
 
