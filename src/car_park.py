@@ -17,6 +17,14 @@ class CarPark:
         self.sensors = sensors or []
         self.displays = displays or []
 
+    @property
+    def available_bays(self):
+        return max(0, self.capacity - len(self.plates))
+
+    def update_temperature(self, temperature):
+        self.temperature = temperature
+        self.update_displays()
+
     def __str__(self):
         return f"Car park at {self.location}, with {self.capacity} bays."
 
@@ -52,14 +60,6 @@ class CarPark:
         except ValueError:
             # code to deal with undetected plates
             self.plates.pop()
-        self.update_displays()
-
-    @property
-    def available_bays(self):
-        return max(0, self.capacity - len(self.plates))
-
-    def update_temperature(self, temperature):
-        self.temperature = temperature
         self.update_displays()
 
     def update_displays(self):
