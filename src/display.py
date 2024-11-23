@@ -1,5 +1,5 @@
 class Display:
-    def __init__(self, id, message="", is_on=False, car_park):
+    def __init__(self, id, car_park, message="", is_on=False):
         self.id = id
         self.message = message
         self.is_on = is_on
@@ -11,4 +11,3 @@ class Display:
     def update(self, data: dict):
         for key, value in data.items():
             print(f"{key}: {value}")
-

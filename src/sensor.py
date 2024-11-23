@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 
 class Sensor(ABC):
-    def __init__(self, id, is_active=False, car_park):
+    def __init__(self, id, car_park, is_active=False):
         self.id = id
         self.is_active = is_active
         self.car_park = car_park

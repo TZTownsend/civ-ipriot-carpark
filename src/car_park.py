@@ -3,8 +3,13 @@ from display import Display
 
 
 class CarPark:
-    def __init__(self, location='Unknown', capacity=0, temperature = temperature, plates=None,
-                 sensors=None, displays=None):
+    def __init__(self,
+                 location="Unknown",
+                 capacity=0,
+                 temperature="Unknown",
+                 plates=None,
+                 sensors=None,
+                 displays=None):
         self.location = location
         self.capacity = capacity
         self.temperature = temperature
@@ -61,4 +66,3 @@ class CarPark:
         for display in self.displays:
             display.update({"Available_bays": self.available_bays,
                             "Temperature": self.temperature})
-
