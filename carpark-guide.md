@@ -459,17 +459,17 @@ Answer the following questions:
 >
 > 1. **Which class is responsible for each of the following pieces of information (and why)?**
 >    - _The number of available bays_
->      `Answer here...`
+>      `CarPark class should be responsible as the available bays may be altered due to the capacity of the car park changing (eg car bays being unavailable due to maintenance works).`
 >    - _The current temperature_
->      `Answer here...`
+>      `CarPark class should be responsible for the current temperature at it should be linked to the location which is a CarPark attribute.`
 >    - _The time_
->      `Answer here...`
+>      `CarPark class should be responsible for the time as it should also be linked to the location to take into account local time differences eg daylight savings.`
 >
 > 2. **What is the difference between an attribute and a property?**
->    `Answer here...`
+>    `Attributes are variables that are attached to an instance of a class.  They maintain the state of the instance/object. A property is a method that behaves like an attribute. They are accessed in a similar way to attributes (ie using do notation) but they allow the attribute to be dervived when it is accessed, and they allow for use of getter and setter methods helping with encapsulation.`
 >
 > 3. **Why do you think we used a dictionary to hold the data we passed the display? List at least one advantage and one disadvantage of this approach.**
->    `Answer here...`
+>    `Using a dictionary enables key:value pairs to be passed to the display class as a data set. An advantage is that the dictionary can be easily updated if requirements change in the future eg, adding weather information to the displays, without the need to update the method in the Display class.  The disadvantage of using a dictionary is that values contained in dictionaries are accessed via keys.  If future requirements necessitated subclasses of Displays eg for different sizes or for some displays to show different values etc, then using methods that took kwargs could be a better option than having to use keys to access the values.`
 
 #### Add a detect vehicle method to the Sensor class
 
