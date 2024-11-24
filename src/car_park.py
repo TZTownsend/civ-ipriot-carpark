@@ -55,12 +55,13 @@ class CarPark:
         self.update_displays()
 
     def remove_car(self, plate):
-        try:
-            self.plates.remove(plate)
-        except ValueError:
-            # code to deal with undetected plates
-            self.plates.pop()
-        self.update_displays()
+        if len(self.plates) > 0:
+            try:
+                self.plates.remove(plate)
+            except ValueError:
+                # code to deal with undetected plates
+                self.plates.pop()
+            self.update_displays()
 
     def update_displays(self):
         for display in self.displays:
