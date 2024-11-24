@@ -713,8 +713,8 @@ if __name__ == "__main__":
 1. Add a screenshot of the output of the unit tests. If any failed, add a screenshot of the error message and a screenshot after you have fixed the errors:
 
 
-   ![Unit tests before](images/unit_tests_before.png)
-   ![Unit tests after](images/unit_tests_after.png)
+   ![CarPark unit tests before](images/car_park_unit_tests_before.png)
+   ![CarPark Unit tests after](images/car_park_unit_tests_after.png)
 
 
 2. Commit your changes to the local repository. Tag the commit with `s6` so your lecturer can find it:
@@ -772,9 +772,9 @@ Next, we'll create tests for the `Display` class. These tests will test the `__i
 
 1. Add a screenshot of the output of the unit tests. If any failed, add a screenshot of the error message and a screenshot after you have fixed the errors:
 
-   ```markdown
-   ![Unit tests](images/unit-tests-display.png)
-   ```
+
+   ![Display unit tests before](images/display_unit_tests_before.png)
+   ![Display unit tests after](images/display_unit_tests_after.png)
 
 2. Commit your changes to the local repository. Tag the commit with `s7` so your lecturer can find it.
 3. Push the tag to the remote repository.
