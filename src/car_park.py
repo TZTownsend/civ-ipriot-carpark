@@ -51,8 +51,10 @@ class CarPark:
         if not isinstance(component, (Sensor, Display)):
             raise TypeError("Object must be a Sensor or Display")
         if isinstance(component, Sensor):
+            component.is_active = True
             self.sensors.append(component)
         elif isinstance(component, Display):
+            component.is_on = True
             self.displays.append(component)
 
     def deregister(self, component):
