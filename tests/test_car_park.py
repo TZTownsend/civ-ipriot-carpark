@@ -51,6 +51,10 @@ class TestCarPark(unittest.TestCase):
         self.assertEqual(self.car_park.plates, [])
         self.assertEqual(self.car_park.available_bays, 100)
 
+    def test_register_raises_type_error(self):
+        with self.assertRaises(TypeError):
+            self.car_park.register("Not a Sensor or Display")
+
 
 if __name__ == "__main__":
     unittest.main()
