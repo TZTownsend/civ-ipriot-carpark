@@ -83,6 +83,20 @@ class TestCarPark(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.car_park.register("Not a Sensor or Display")
 
+    def test_carpark_can_be_initialised_with_config_file(self):
+        self.car_park.location = "1 Config St"
+        self.car_park.write_config()
+        carpark_from_config_file = CarPark.from_config()
+        self.assertIsInstance(carpark_from_config_file, CarPark)
+        self.assertEqual(carpark_from_config_file.location, "1 Config St")
+        self.assertEqual(carpark_from_config_file.capacity, 100)
+        self.assertEqual(carpark_from_config_file.temperature, "Unknown")
+        self.assertEqual(carpark_from_config_file.plates, [])
+        self.assertEqual(carpark_from_config_file.sensors, [])
+        self.assertEqual(carpark_from_config_file.displays, [])
+        self.assertEqual(carpark_from_config_file.available_bays, 100)
+        self.assertEqual(carpark_from_config_file.log_file, Path("log.txt"))
+
 
 if __name__ == "__main__":
     unittest.main()
