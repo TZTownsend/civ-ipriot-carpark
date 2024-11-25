@@ -29,10 +29,19 @@ class CarPark:
 
     @property
     def available_bays(self):
+        """
+        Dynamically calculates available bays in carpark.
+        :return:
+        """
         return max(0, self.capacity - len(self.plates))
 
     @classmethod
     def from_config(cls, config_file=Path("config.json")):
+        """
+        Enables instantiation of a CarPark from a JSON configuration file.
+        :param config_file:
+        :return:
+        """
         config_file = config_file if isinstance(config_file, Path) else Path(
             config_file)
         with config_file.open() as f:
@@ -41,6 +50,12 @@ class CarPark:
                    log_file=config["log_file"])
 
     def update_temperature(self, temperature):
+        """
+        Updates temperature at carpark location and sends new data to carpark
+        displays.
+        :param temperature:
+        :return:
+        """
         self.temperature = temperature
         self.update_displays()
 
@@ -48,6 +63,12 @@ class CarPark:
         return f"Car park at {self.location}, with {self.capacity} bays."
 
     def register(self, component):
+        """
+        Registers carpark components (eg Sensors and Displays). Components
+         are set to on when they are registered to the carpark.
+        :param component:
+        :return:
+        """
         if not isinstance(component, (Sensor, Display)):
             raise TypeError("Object must be a Sensor or Display")
         if isinstance(component, Sensor):
@@ -58,6 +79,11 @@ class CarPark:
             self.displays.append(component)
 
     def deregister(self, component):
+        """
+        Removes carpark components from the CarPark.
+        :param component:
+        :return:
+        """
         if not isinstance(component, (Sensor, Display)):
             raise TypeError("Object must be a Sensor or Display")
         if isinstance(component, Sensor):
@@ -72,11 +98,23 @@ class CarPark:
                 raise ValueError("Display not found")
 
     def add_car(self, plate):
+        """
+        Adds car number plate to plates list and sends updated information
+        to Displays for output.  Logs number plate as entered in log file.
+        :param plate:
+        :return:
+        """
         self.plates.append(plate)
         self.update_displays()
         self._log_car_activity(plate, action="entered")
 
     def remove_car(self, plate):
+        """
+        Removes car numberplate from list of plates in carpark and sends
+        update to displays. Logs number plate as exited in log file.
+        :param plate:
+        :return:
+        """
         if len(self.plates) > 0:
             try:
                 self.plates.remove(plate)
@@ -87,16 +125,30 @@ class CarPark:
             self._log_car_activity(plate, action="exited")
 
     def update_displays(self):
+        """
+        Sends updated information to carpark displays.
+        :return:
+        """
         for display in self.displays:
             display.update({"Available_bays": self.available_bays,
                             "Temperature": self.temperature})
 
     def _log_car_activity(self, plate, action):
+        """
+        Writes car activity data to log file.
+        :param plate:
+        :param action:
+        :return:
+        """
         with self.log_file.open("a") as f:
             f.write(
                 f"{plate} {action} at {datetime.now():%Y-%m-%d %H:%M:%S}\n")
 
     def write_config(self):
+        """
+        Writes configuration data to configuration file.
+        :return:
+        """
         with open(self.config_file, "w") as f:
             json.dump({"location": self.location,
                        "capacity": self.capacity,

@@ -9,6 +9,11 @@ class Display:
         return f"Display {self.id}: {self.message}"
 
     def update(self, data: dict):
+        """
+        Outputs message data to displays.
+        :param data:
+        :return:
+        """
         self.message.update(data)
         if self.is_on:
             print("=" * 50)
