@@ -11,5 +11,7 @@ class Display:
     def update(self, data: dict):
         self.message.update(data)
         if self.is_on:
+            print("=" * 50)
             for key, value in data.items():
                 print(f"{key}: {value}")
+            print(("=" * 50), "\n")
