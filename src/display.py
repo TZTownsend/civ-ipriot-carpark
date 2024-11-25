@@ -10,5 +10,6 @@ class Display:
 
     def update(self, data: dict):
         self.message.update(data)
-        for key, value in data.items():
-            print(f"{key}: {value}")
+        if self.is_on:
+            for key, value in data.items():
+                print(f"{key}: {value}")
