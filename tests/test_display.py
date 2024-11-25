@@ -22,3 +22,7 @@ class TestCarPark(unittest.TestCase):
     def test_update(self):
         self.display.update({"Message": "Goodbye"})
         self.assertTrue("Goodbye", self.display.message.get("Message"))
+
+
+if __name__ == "__main__":
+    unittest.main()
