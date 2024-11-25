@@ -1,3 +1,5 @@
+from pathlib import Path
+from datetime import datetime
 from sensor import Sensor
 from display import Display
 
@@ -9,13 +11,17 @@ class CarPark:
                  temperature="Unknown",
                  plates=None,
                  sensors=None,
-                 displays=None):
+                 displays=None,
+                 log_file=Path("log.txt")):
         self.location = location
         self.capacity = capacity
         self.temperature = temperature
         self.plates = plates or []
         self.sensors = sensors or []
         self.displays = displays or []
+        self.log_file = log_file if isinstance(log_file, Path) else Path(
+            log_file)
+        self.log_file.touch(exist_ok=True)
 
     @property
     def available_bays(self):
@@ -53,6 +59,7 @@ class CarPark:
     def add_car(self, plate):
         self.plates.append(plate)
         self.update_displays()
+        self._log_car_activity(plate, action="entered")
 
     def remove_car(self, plate):
         if len(self.plates) > 0:
@@ -62,8 +69,14 @@ class CarPark:
                 # code to deal with undetected plates
                 self.plates.pop()
             self.update_displays()
+            self._log_car_activity(plate, action="exited")
 
     def update_displays(self):
         for display in self.displays:
             display.update({"Available_bays": self.available_bays,
                             "Temperature": self.temperature})
+
+    def _log_car_activity(self, plate, action):
+        with self.log_file.open("a") as f:
+            f.write(
+                f"{plate} {action} at {datetime.now():%Y-%m-%d %H:%M:%S}\n")
